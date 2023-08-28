@@ -1,5 +1,5 @@
 import { applyDecorators } from "@nestjs/common";
-import { ApiBadRequestResponse, ApiOkResponse } from "@nestjs/swagger";
+import { ApiBadRequestResponse, ApiConflictResponse, ApiOkResponse, ApiResponse } from "@nestjs/swagger";
 import { MenuResponses } from "./swagger-resposnes-menu";
 
 
@@ -18,6 +18,12 @@ export function MenuCustomdecarators(method:string,route:string)
                         ApiOkResponse(MenuResponses.getById.ok),
                         ApiBadRequestResponse(MenuResponses.getById.Badrequest)
                     )
+                    //useremployee
+                case ':id/details': 
+                return applyDecorators( ApiOkResponse(MenuResponses.getById.ok),
+                ApiBadRequestResponse(MenuResponses.getById.Badrequest),
+
+                )
             }
         case 'Post':
             switch(route)
@@ -27,8 +33,17 @@ export function MenuCustomdecarators(method:string,route:string)
                 case ':id/menuitem':
                     return applyDecorators(
                         ApiOkResponse(MenuResponses.addMenuItem.ok),
-                        ApiBadRequestResponse(MenuResponses.addMenuItem.BadRequest)
+                        ApiBadRequestResponse(MenuResponses.addMenuItem.BadRequest),
+                        //user
+                        ApiResponse(MenuResponses.Userpost.sucess),
+                        ApiBadRequestResponse(MenuResponses.UserbadRequest),
                     )
+                    case 'roles':
+                        //user
+                        return applyDecorators(
+                            ApiOkResponse(MenuResponses.PostRole.ok),
+                            ApiConflictResponse(MenuResponses.PostRole.Conflict)
+                        )
 
             }
         case 'Delete':
@@ -36,6 +51,16 @@ export function MenuCustomdecarators(method:string,route:string)
             {
                 case '/':
                     return applyDecorators()
+            }
+        case 'Put':
+            switch(route)
+            {
+                case 'role/:id':
+                    return applyDecorators(
+                        //usersrole
+                        ApiOkResponse(MenuResponses.PutRole.ok),
+                        ApiBadRequestResponse(MenuResponses.PutRole.BadRequest)
+                    )
             }
 
     }

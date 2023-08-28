@@ -11,6 +11,8 @@ export class Roles {
 
     @Column()
     name: string
+    @Column({nullable : true})
+    description:string
 
     @OneToMany(() => Employee, (employees) => employees.roles)
     employees: Employee[]

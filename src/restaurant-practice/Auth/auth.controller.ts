@@ -9,6 +9,7 @@ import { EmployeeAuthGuard } from "./auth.Guard";
 import { createRoleDto } from "../dtos/createRole.dtos";
 import { updateRoleDto } from "../dtos/updateRole.dtos";
 import { ApiTags } from "@nestjs/swagger";
+import { MenuCustomdecarators } from "../Menu/swagger-menu/swagger-menu-decarator";
 
 @ApiTags("employee")
 @Controller('auth/employee')
@@ -39,6 +40,7 @@ export class AuthController  {
     }
 
     @UseGuards(EmployeeAuthGuard)
+    @MenuCustomdecarators('Get',':id/details')
     @Get(':id/details')
     getEmployeeDetails(@Param('id') id:number)
     {
@@ -46,13 +48,15 @@ export class AuthController  {
     }
 
     //roles
+    @MenuCustomdecarators('Post','roles')
     @Post('roles')
     createRoles(@Body() roleName : createRoleDto)
     {
        return this.authservice.createRoles(roleName);
     }
 
-    @Put('updaterole/:id')
+    @MenuCustomdecarators('Put','role/:id')
+    @Put('role/:id')
     updateRoles(@Body() updateRoles:updateRoleDto, @Param('id') employeeid:number)
     {
        return this.authservice.updateRoles(updateRoles,employeeid);

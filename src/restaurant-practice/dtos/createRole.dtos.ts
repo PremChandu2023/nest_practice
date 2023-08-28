@@ -4,4 +4,8 @@ export class createRoleDto {
     @IsNotEmpty()
     @IsString()
     roleName : string
+
+    @IsNotEmpty()
+    @IsString()
+    description:string
 }

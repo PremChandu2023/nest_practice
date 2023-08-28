@@ -21,7 +21,7 @@ export class AuthService {
         const employee = await this.employeeRespository.findOne({ where : {email : createLogin.email}})
         if(!employee)
         {
-            throw new UnauthorizedException('Bad credentials')
+            throw new UnauthorizedException({message :'Bad credentials'})
         }
         else{
             //verify hashed request and password in database
@@ -32,7 +32,7 @@ export class AuthService {
                 return {token, employee}
           }
           else{
-            throw new UnauthorizedException('Bad credentials');
+            throw new UnauthorizedException({message :'Bad credentials'});
           }
         }      
     }
@@ -46,7 +46,7 @@ export class AuthService {
         const newEmployee = await this.employeeRespository.findOne({where : {email : employee.email}})
         if(newEmployee)
         {
-            throw new BadRequestException('Given email is already registered give new email')
+            throw new BadRequestException({message :'Given email is already registered give new email'})
         }
         else
         {
@@ -83,6 +83,10 @@ export class AuthService {
     {
         
         const newEmployee = await this.employeeRespository.findOne({where : {id:employeid}})
+        if(!newEmployee)
+        {
+            throw new BadRequestException({ message: "User is not found with given id"});
+        }
         
         const Role = await this.rolesRespository.findOne({where : {name : updateRole.name}})
 

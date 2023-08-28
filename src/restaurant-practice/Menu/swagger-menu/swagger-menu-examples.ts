@@ -50,5 +50,85 @@ export const menuExamples = {
         value : {
             "message": "Given_id_is_not_found"
         }
+    },//user--starts
+    registerSuccess : {
+        description : 'Gives the registered user details',
+        value : {
+            "succes": true,
+            "data": {
+                "employee_Id": "A1",
+                "employee_Name": "prem",
+                "status": "Active",
+                "email": "prem3a3",
+                "phoneNumber": "8367"
+            }
+        }
+    },
+    duplicateEmail : {
+        description : "Occurs when given Id is invalid",
+         value :{
+            "message": "Given email is already registered give new email"
+        }
+    },
+    UserGetSuccess : {
+        description : "Occurs when given Id is invalid",
+         value :{
+            "succes": true,
+            "data": {
+                "id": 1,
+                "employee_Id": "A1",
+                "employee_Name": "prem",
+                "status": "Active",
+                "email": "prem3a3",
+                "phoneNumber": 8367
+            }
+        }
+    },
+    RoleGetSuccess : {
+        description : "Gives the role deatils that have been posted",
+         value :{
+            "succes": true,
+            "data": {
+                "name": "Customer",
+                "description": "customer has permission to order",
+                "id": 5,
+            }
+        }
+    },
+    RoleConflict : {
+        description : "Same Role posted again",
+         value :{
+            error: "Conflict Error",
+            message : "Given_role_is_already_present ",
+         }
+    },
+    RolePutSuccess:  {
+        description : "Role is updated with given name in database",
+         value : {
+    "succes": true,
+    "data": {
+        "id": 1,
+        "employee_Id": "A1",
+        "employee_Name": "prem",
+        "status": "Active",
+        "email": "prem3a3",
+        "phoneNumber": 8367,
+        "date": {
+            "createdDate": "2023-08-22T05:30:40.783Z",
+            "updatedDate": "2023-08-22T09:38:24.000Z"
+        },
+        "roles": {
+            "id": 1,
+            "name": "Manager",
+        }
     }
+}
+    },
+    RolePutBadREquest : {
+    description : "Role is updated with given name in database",
+    value :{
+        message : 'Id not found to update the role'
+    }
+}
+
 }
