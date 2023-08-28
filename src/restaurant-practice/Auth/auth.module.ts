@@ -15,7 +15,7 @@ imports : [TypeOrmModule.forFeature([Employee, Roles]),
             JwtModule.register({
                 secret: 'employeesecret',
                 signOptions : {algorithm : 'HS512',
-                expiresIn : '1d'
+                expiresIn : '1hr'
                             }
             }),PassportModule.register({defaultStrategy : 'jwt'})],providers : [AuthService,EmployeeAuthGuard,RolesGuard]
 })

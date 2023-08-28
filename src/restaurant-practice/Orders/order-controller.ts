@@ -16,7 +16,7 @@ import { updateOrderDto } from "./order-dtos/oders-updateDto";
 @ApiBearerAuth()
 @Controller('/order')
 @UseInterceptors(RecentsearchInterceptor)
-// @UseGuards(EmployeeAuthGuard,RolesGuard)
+@UseGuards(EmployeeAuthGuard,RolesGuard)
 export class OrderController {
     constructor(private orderService: OrderServices) { }
 
